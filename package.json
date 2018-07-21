@@ -24,7 +24,7 @@
   "homepage": "https://github.com/victordelval/mern-skeleton#readme",
   "main": "entry.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devel": "nodemon"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
