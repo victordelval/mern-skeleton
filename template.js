@@ -6,7 +6,7 @@ export default () => {
         <title>MERN Kickstart</title>
       </head>
       <body>
-        <div id="root">Hello!</div>
+        <div id="root">Hello skeleton!</div>
         </body>
     </html>`
 }
