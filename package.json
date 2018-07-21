@@ -2,7 +2,16 @@
   "name": "mern-skeleton",
   "version": "1.0.0",
   "description": "Skeleton MERN application that will function as a base for full-featured applications",
-  "keywords": ["skeleton", "mern", "universal", "javascript", "node", "express", "mongo", "react"],
+  "keywords": [
+    "skeleton",
+    "mern",
+    "universal",
+    "javascript",
+    "node",
+    "express",
+    "mongo",
+    "react"
+  ],
   "author": "Victor del Val",
   "license": "ISC",
   "repository": {
@@ -16,5 +25,11 @@
   "main": "entry.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1"
   }
 }
