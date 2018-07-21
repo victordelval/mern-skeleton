@@ -2,18 +2,17 @@
   "name": "mern-skeleton",
   "version": "1.0.0",
   "description": "Skeleton MERN application that will function as a base for full-featured applications",
-  "keywords": [
-    "skeleton",
-    "mern",
-    "universal",
-    "javascript",
-    "node",
-    "express",
-    "mongo",
-    "react"
-  ],
+  "keywords": ["skeleton", "mern", "universal", "javascript", "node", "express", "mongo", "react"],
   "author": "Victor del Val",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/victordelval/mern-skeleton.git"
+  },
+  "bugs": {
+    "url": "https://github.com/victordelval/mern-skeleton/issues"
+  },
+  "homepage": "https://github.com/victordelval/mern-skeleton#readme",
   "main": "entry.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
