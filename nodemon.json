@@ -1,0 +1,7 @@
+{
+  "verbose": false,
+  "watch": [
+    "./backend"
+  ],
+  "exec": "webpack --mode=development --config webpack.config.backend.js && node ./dist/server.generated.js"
+}
