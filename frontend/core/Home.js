@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import {withStyles} from '@material-ui/core/styles'
 import withStyles from "@material-ui/core/styles/withStyles";
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -15,7 +14,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 5
   },
   title: {
-    padding:`${theme.spacing.unit * 3}px ${theme.spacing.unit * 2.5}px ${theme.spacing.unit * 2}px`,
+    padding: `${theme.spacing.unit * 3}px ${theme.spacing.unit * 2.5}px ${theme.spacing.unit * 2}px`,
     color: theme.palette.text.secondary
   },
   media: {
@@ -25,19 +24,19 @@ const styles = theme => ({
 
 class Home extends Component {
   render() {
-    const {classes} = this.props
+    const { classes } = this.props
     return (
-        <Card className={classes.card}>
-          <Typography type="headline" component="h2" className={classes.title}>
-            Home Page
+      <Card className={classes.card}>
+        <Typography type="headline" component="h2" className={classes.title}>
+          Home Page
           </Typography>
-          <CardMedia className={classes.media} image={mountainsImg} title="Unicorn Shells"/>
-          <CardContent>
-            <Typography type="body1" component="p">
-              Welcome to the Mountains...
+        <CardMedia className={classes.media} image={mountainsImg} title="Unicorn Shells" />
+        <CardContent>
+          <Typography type="body1" component="p">
+            Welcome to the Mountains...
             </Typography>
-          </CardContent>
-        </Card>
+        </CardContent>
+      </Card>
     )
   }
 }
@@ -49,15 +48,3 @@ Home.propTypes = {
 // using 'whitStyles' creates a HOC that has access
 // to the defined style objects as props
 export default withStyles(styles)(Home)
-
-
-// class Home extends Component {
-//   render() {
-//     const {classes} = this.props
-//     return (
-//         <p>Home</p>
-//     )
-//   }
-// }
-
-// export default withStyles(styles)(Home)
