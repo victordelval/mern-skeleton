@@ -1,4 +1,5 @@
 import express from 'express'
+import path from 'path'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import compress from 'compression'
@@ -24,6 +25,8 @@ const app = express()
 devBundle.compile(app)
 // --------------------------------------------
 
+const CURRENT_WORKING_DIR = process.cwd()
+
 // if (process.env.NODE_ENV !== 'test') {
 if (config.env !== 'test') {
   app.use(logger('combined'))
@@ -43,10 +46,16 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(cookieParser())
 app.use(compress())
+
 // secure apps by setting various HTTP headers
 app.use(helmet())
+
 // enable CORS - Cross Origin Resource Sharing
 app.use(cors())
+
+// serve static files (CSS files, images, or the
+// bundled client-side JS) from the dist/ folder
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 
 // mount routes
 app.use('/', userRoutes)
