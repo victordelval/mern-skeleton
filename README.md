@@ -632,6 +632,29 @@ To bundle client-side code after compiling it with Babel, and also to enable rea
 Add webpack config files...
 
 
+
+### Loading Webpack middleware for development
+
+### Serving static files with Express
+
+### Updating the template to load a bundled script
+
+
+### Adding React dependencies
+
+React
+
+`npm install --save react react-dom`
+
+React Router:
+
+`npm install --save react-router react-router-dom`
+
+Material UI
+
+`npm install --save material-ui material-ui-icons`
+
+
 ### Backend user API integration
 
 
