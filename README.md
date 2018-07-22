@@ -28,17 +28,148 @@ The Node version used is `10.3.0`
 
 ## Table of contents
 
-* [Folder and file structure](#folder-and-file-structure)
-* [Steps implementing the skeleton backend](#steps-implementing-the-skeleton-backend)
+* [Application overview](#application-overview)
+* [Backend with Express and MongoDB](#backend-with-express-and-mongodb)
+  * [Backend structure]()
   * [Setting up the project](#setting-up-the-project)
-* []()
+  * [Preparing the server]()
+  * [User model]()
+  * [User CRUD API]()
+  * [User auth and protected routes]()
+  * [Checking the standalone backend](#checking-the-standalone-backend)
+* [Frontend with React and MaterialUI](#frontend-with-react-and-material-ui)
+
+
+
+* [Steps implementing the skeleton backend](#steps-implementing-the-skeleton-backend)
 * []()
 * []()
 
 
-## Folder and file structure
+## Application overview
 
-The MERN skeleton will show the following folder structure:
+The skeleton application will encapsulate rudimentary features and a workflow repeated for most MERN applications.
+
+We will build the skeleton essentially as a basic but fully functioning MERN web application with user CRUD, and authentication-authorization (auth) capabilities, which will also lay out how to develop, organize, and run code for general web applications built using this stack.
+
+The aim is to keep the skeleton as simple as possible so it is easy to extend, and can be used as a base application for developing different MERN applications.
+
+
+### Folder and file structure
+
+The MERN skeleton has the following folder structure:
+
+```
+| mern-skeleton/
+  | -- backend/
+    | --- controllers/
+        | ---- auth.controller.js
+        | ---- user.controller.js
+    | --- helpers/
+        | ---- dbErrorHandler.js
+    | --- models/
+        | ---- user.model.js
+    | --- routes/
+        | ---- auth.routes.js
+        | ---- user.routes.js
+    | --- express.js
+    | --- server.js
+
+  | -- config/
+    | --- config.js
+
+  | -- dist/
+
+  | -- frontend/
+
+  | -- node_modules/
+
+  | -- .babelrc
+  | -- .gitignore
+  | -- nodemon.json
+  | -- package.json
+  | -- template.js
+  | -- webpack.config.backend.js
+```
+
+
+---
+
+
+## Backend with Express and MongoDB
+
+### Overview
+
+We will focus on building a working backend for the skeleton application with Node, Express, and MongoDB. The completed backend will be a standalone server-side application that can handle HTTP requests to create a user, list all users, and view, update, or delete a user in the database while taking user authentication and authorization into consideration.
+
+We will produce a functioning, standalone server-side application.
+
+To start developing the backend part of the MERN skeleton, we will first set up the project folder, install and configure the necessary npm modules, and then prepare the run scripts to aid development and run the code.
+
+Then, we will go through the code step by step to implement the user model, API endpoints, and JWT-based auth.
+
+#### User model
+
+The user model will define user details to be stored in the MongoDB database, and also handle user-related business logic such as password encryption and user data validation. The user model for this skeletal version will be basic with support for the following attributes:
+
+name (String) Required field to store user's name
+
+email (String) Required unique field to store user's email and identify each account (only one account allowed per unique email)
+
+password (String) Required field for authentication, the database will store the encrypted password and not the actual string for security purposes
+
+created (Date) Automatically generated timestamp when a new user account is created
+
+updated (Date) Automatically generated timestamp when existing user details are updated
+
+
+#### API endpoints for user CRUD
+
+To enable and handle user CRUD operations on the user database, the backend will implement and expose API endpoints that the frontend can utilize in the views, as follows:
+
+| Operation | API route | HTTP method |
+| --------- | --------- | ----------- |
+| Create a user | `/api/users` | POST |
+| List all users | `/api/users` | GET |
+| Fetch a user | `/api/users/:userId` | GET |
+| Update a user | `/api/users/:userId` | PUT |
+| Delete a user | `/api/users/:userId` | DELETE |
+| User sign-in | `/auth/signin` | POST |
+| User sign-out (optional) | `/auth/signout` | GET |
+
+
+Some of these user CRUD operations will have protected access, which will require the requesting client to be either authenticated, authorized, or both. The last two routes are for authentication and will allow the user to sign in and sign out.
+
+
+#### Auth with JSON Web Tokens
+
+To restrict and protect access to the user API endpoints according to the skeleton features, the backend will need to incorporate authentication and authorization mechanisms. There are a number of options when it comes to implementing user auth for web applications. The most common and time tested option is the use of sessions to store user state on both the client and server side. But a newer approach is the use of JSON Web Token (JWT) as a stateless authentication mechanism that does not require storing user state on the server side.
+
+
+Both approaches have strengths for relevant real-world use cases. However, because it pairs well with the MERN stack, we will use JWT for auth implementation. Additionally, additional security improvements can be made.
+
+**How JWT works**
+
+When a user successfully signs in using their credentials, the server side generates a JWT signed with a secret key and a unique user detail. Then, this token is returned to the requesting client to be saved locally either in localStorage, sessionStorage, or a cookie in the browser, essentially handing over the responsibility of maintaining user state to the client side:
+
+(JWT auth flow)
+
+For HTTP requests made following a successful sign-in, specially requests for API endpoints that are protected and have restricted access, the client side has to attach this token to the request. More specifically, the JSON Web Token must be included in the request Authorization header as a Bearer.
+
+`Authorization: Bearer <JSON Web Token>`
+
+When the server receives a request for a protected API endpoint, it checks the Authorization header of the request for a valid JWT, then verifies the signature to identify the sender and ensures the request data was not corrupted. If the token is valid, the requesting client is given access to the associated operation or resource, otherwise an authorization error is returned.
+
+In the skeleton application, when a user signs in with email and password, the backend will generate a signed JWT with the user's ID and with a secret key available only on the server. This token will then be required for verification when a user tries to view any user profiles, update their account details, or delete their user account.
+
+Implementing the user model to store and validate user data, then integrating it with APIs to perform CRUD operations based on auth with JWT, will produce a functioning standalone backend. In the rest of the chapter, we will look at how to achieve this in the MERN stack and setup.
+
+
+
+
+### Backend structure
+
+The following folder structure only shows the files that are relevant for the MERN skeleton backend. With these files, we will produce a functioning, standalone server-side application:
 
 ```
 | mern-skeleton/
@@ -69,15 +200,6 @@ The MERN skeleton will show the following folder structure:
   | -- template.js
   | -- webpack.config.backend.js
 ```
-
-## Steps implementing the skeleton backend
-
-We will produce a functioning, standalone server-side application.
-
-To start developing the backend part of the MERN skeleton, we will first set up the project folder, install and configure the necessary npm modules, and then prepare the run scripts to aid development and run the code.
-
-Then, we will go through the code step by step to implement the user model, API endpoints, and JWT-based auth to meet the specifications we defined earlier for the user-oriented features.
-
 
 ### Setting up the project
 
@@ -330,10 +452,71 @@ By using the getErrorMessage function exported from this helper file, we will ad
 ### User auth and protected routes
 #### Auth routes
 #### Auth controller
+
+The auth controller functions in server/controllers/auth.controller.js will not only handle requests to the sign-in and sign-out routes, but also provide JWT and express-jwt functionality to enable authentication and authorization for protected user API endpoints.
+
 #### Sign-in
+
+The password authentication method defined in the UserSchema is used to verify the password received in the req.body from the client.
+
+If the password is successfully verified, the JWT module is used to generate a JWT signed using a secret key and the user's _id value.
+
+Install jsonwebtoken to use it in the controller:
+
+`npm install jsonwebtoken --save`
+
+Then, the signed JWT is returned to the authenticated client along with user details.
+
+( * ) Optionally, we can also set the token to a cookie in the response object so it is available to the client side if cookies is the chosen form of JWT storage. On the client side, this token must be attached as an Authorization header when requesting protected routes from the server.
+
 #### Sign-out
+
+The signout function clears the response cookie containing the signed JWT. This is an optional endpoint and not really necessary for auth purposes if cookies are not used at all in the frontend.
+
+With JWT, user state storage is the client's responsibility, and there are multiple options for client-side storage besides cookies. On sign-out, the client needs to delete the token on the client side to establish that the user is no longer authenticated
+
 #### Protecting routes with express-jwt
 
+To protect access to the read, update, and delete routes, the server will need to check that the requesting client is actually an authenticated and authorized user.
+
+To check if the requesting user is signed in and has a valid JWT when a protected route is accessed, we will use the express-jwt module.
+
+The `express-jwt` module is middleware that validates JSON Web Tokens. Run `npm install express-jwt --save`
+
+**Requiring sign-in**
+
+The `requireSignin` method in auth.controller.js uses express-jwt to verify that the incoming request has a valid JWT in the Authorization header. If the token is valid, it appends the verified user's ID in an 'auth' key to the request object, otherwise it throws an authentication error.
+
+We can add `requireSignin` to any route that should be protected against unauthenticated access.
+
+**Authorizing signed in users**
+
+For some of the protected routes such as update and delete, on top of checking for authentication we also want to make sure the requesting user is only updating or deleting their own user information.
+
+To achieve this, the `hasAuthorization` function defined in auth.controller.js checks if the authenticated user is the same as the user being updated or deleted before the corresponding CRUD controller function is allowed to proceed.
+
+**Protecting user routes**
+
+We will add `requireSignin` and `hasAuthorization` to the user route declarations that need to be protected with authentication and also authorization.
+
+The route to read a user's information only needs authentication verification, whereas the update and delete routes should check for both authentication and authorization before these CRUD operations are executed.
+
+**Auth error handling for express-jwt**
+
+To handle the auth-related errors thrown by express-jwt when it tries to validate JWT tokens in incoming requests, we need to add the following error-catching code to the Express app configuration in mern-skeleton/server/express.js, near the end of the code, after the routes are mounted and before the app is exported:
 
 
 
+### Checking the standalone backend
+
+With user auth implemented for protecting routes, we have covered all the desired features of a working backend for the skeleton MERN application.
+
+Now, we will look at how we can check if this standalone backend is functioning as desired without implementing a frontend.
+
+
+
+
+---
+
+
+## Frontend with React and MaterialUI
