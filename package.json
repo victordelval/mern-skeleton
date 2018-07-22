@@ -51,6 +51,8 @@
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.10",
     "mongoose": "^5.2.4",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.3"
   }
 }
