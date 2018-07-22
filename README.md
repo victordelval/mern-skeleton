@@ -621,7 +621,15 @@ Then, update .babelrc to include the module and also configure the react-hot-loa
 
 **Webpack**
 
+To bundle client-side code after compiling it with Babel, and also to enable react-hot-loader for faster development, install the following modules:
 
+`npm install --save-dev webpack-dev-middleware webpack-hot-middleware`
+
+¿? `npm install --save-dev file-loader`
+
+`npm install --save react-hot-loader`
+
+Add webpack config files...
 
 
 ### Backend user API integration
