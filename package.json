@@ -1,16 +1,16 @@
 {
   "name": "mern-skeleton",
   "version": "1.0.0",
-  "description": "Skeleton MERN application that will function as a base for full-featured applications",
+  "description": "A base MERN stack web application",
   "keywords": [
-    "skeleton",
     "mern",
     "universal",
     "javascript",
     "node",
     "express",
-    "mongo",
-    "react"
+    "mongodb",
+    "react",
+    "material-ui"
   ],
   "author": "Victor del Val",
   "license": "ISC",
@@ -18,11 +18,8 @@
     "type": "git",
     "url": "git+ssh://git@github.com/victordelval/mern-skeleton.git"
   },
-  "bugs": {
-    "url": "https://github.com/victordelval/mern-skeleton/issues"
-  },
   "homepage": "https://github.com/victordelval/mern-skeleton#readme",
-  "main": "entry.js",
+  "main": "template.js",
   "scripts": {
     "devel": "nodemon"
   },
@@ -42,6 +39,8 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "@material-ui/core": "^1.4.0",
+    "@material-ui/icons": "^1.1.0",
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "cookie-parser": "^1.4.3",
@@ -51,9 +50,8 @@
     "helmet": "^3.12.2",
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.10",
-    "material-ui": "^0.20.1",
-    "material-ui-icons": "^1.0.0-beta.36",
     "mongoose": "^5.2.4",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.3",
