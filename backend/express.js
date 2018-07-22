@@ -4,12 +4,28 @@ import cookieParser from 'cookie-parser'
 import compress from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
+import logger from 'morgan'
+
+import config from './../config/config'
 
 import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
 
 const app = express()
+
+// if (process.env.NODE_ENV !== 'test') {
+if (config.env !== 'test') {
+  app.use(logger('combined'))
+}
+
+// TODO
+// import { config } from 'dotenv'
+// app.disable('x-powered-by')
+// app.set('env', SETTINGS.parsed.ENV)
+// app.set('config', SETTINGS.parsed)
+// app.locals.env = app.get('env')
+// app.locals.config = app.get('config')
 
 // parse body params and attache them to req.body
 app.use(bodyParser.json())
