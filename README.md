@@ -372,6 +372,20 @@ We will be using the Mongoose module to implement the user model in this skeleto
 
 Then, update the `server.js` file to import the mongoose module, configure it to use native ES6 promises, and finally use it to handle the connection to the MongoDB database for the project.
 
+**Attention**
+
+In order to use MongoDB we need to have it up and running available to the app. This is easy with Docker running in your machine:
+
+`docker run -d --name mongodb -v /home/vval/code/data/mongodb:/data/db -p 27017:27017 mongo:latest`
+
+* `docker run` - Creating and running a container
+* `-d` - Running in detached mode (no output in terminal)
+* `--name mongodb` - The container name
+* `-v /home/vval/code/data/mongodb:/data/db` - Local persistence for the mongo running in the container
+* `-p 27017:27017` - localPort : containerPort
+* `mongo:latest` - Latest version of the official image for MongoDB (v4.0)
+
+
 
 #### Serving an HTML template at a root URL
 
@@ -513,7 +527,7 @@ With user auth implemented for protecting routes, we have covered all the desire
 
 Now, we will look at how we can check if this standalone backend is functioning as desired without implementing a frontend.
 
-
+We are using ARC extension from Google Chrome (Advanced Rest Client) to create a user, list users, signin, and get signed user.
 
 
 ---
