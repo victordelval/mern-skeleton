@@ -12,7 +12,17 @@ import Template from './../template'
 import userRoutes from './routes/user.routes'
 import authRoutes from './routes/auth.routes'
 
+// Attention! ---------------------------------
+// Comment out before building for production!!
+import devBundle from './devBundle'
+// --------------------------------------------
+
 const app = express()
+
+// Attention! ---------------------------------
+//comment out before building for production
+devBundle.compile(app)
+// --------------------------------------------
 
 // if (process.env.NODE_ENV !== 'test') {
 if (config.env !== 'test') {
