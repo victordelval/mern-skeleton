@@ -29,21 +29,24 @@ The Node version used is `10.3.0`
 ## Table of contents
 
 * [Application overview](#application-overview)
+
 * [Backend with Express and MongoDB](#backend-with-express-and-mongodb)
-  * [Backend structure]()
+  * [Backend structure](#backend-structure)
   * [Setting up the project](#setting-up-the-project)
-  * [Preparing the server]()
-  * [User model]()
-  * [User CRUD API]()
-  * [User auth and protected routes]()
+  * [Preparing the server](#preparing-the-server)
+  * [User model](#user-model)
+  * [User CRUD API](#user-crud-api)
+  * [User auth and protected routes](#user-auth-and-protected-routes)
   * [Checking the standalone backend](#checking-the-standalone-backend)
-* [Frontend with React and MaterialUI](#frontend-with-react-and-material-ui)
 
-
-
-* [Steps implementing the skeleton backend](#steps-implementing-the-skeleton-backend)
-* []()
-* []()
+* [Frontend with React](#frontend-with-react)
+  * [Frontend structure](#frontend-structure)
+  * [Setting up development with React, React Router and Material-UI](#setting-up-development-with-react,-react-router-and-material-ui)
+  * [Backend user API integration](#backend-user-api-integration)
+  * [Auth integration](#auth-integration)
+  * [The views](#the-views)
+  * [Navigation menu](#navigation-menu)
+  * [Basic server-side rendering](#basic-server-side-rendering)
 
 
 ## Application overview
@@ -533,4 +536,108 @@ We are using ARC extension from Google Chrome (Advanced Rest Client) to create a
 ---
 
 
-## Frontend with React and MaterialUI
+## Frontend with React
+
+We will use React to add an interactive user interface to the basic user and auth features implemented for the backend of the MERN skeleton application that we started building in the previous section.
+
+We will add the following user interface components to our base application:
+
+* Home page: A view that renders at the root URL to welcome users to the web application
+* User list page: A view that fetches and shows a list of all the users in the database, and also links to individual user profiles
+* Sign-up page: A view with a form for user sign-up, allowing new users to create a user account and redirecting them to a sign in page when successfully created
+* Sign-in page: A view with a sign-in form that allows existing users to sign in so they have access to protected views and actions
+* Profile page: A component that fetches and displays an individual user's information, is only accessible by signed-in users, and also contains edit and delete options, which are visible only if the signed-in user is looking at their own profile
+* Edit profile page: A form that fetches the user's information in the form, allows them to edit the information, and is accessible only if the logged-in user is trying to edit their own profile
+* Delete user component: An option that allows the signed-in user to delete only their own profile after confirming their intent
+* Menu navigation bar: A component that lists all the available and relevant views to the user, and also helps to indicate the user's current location in the application
+
+
+The following React component tree diagram shows all the React components we will develop to build out the views for this base application:
+
+* Main Router
+  * Menu
+  * Home
+  * SignUp
+  * SignIn
+  * Users
+  * Profile
+    * Delete User
+  * Edit Profile
+
+MainRouter will be the root React component that contains all the other custom React views in the application. Home, Signup, Signin, Users, Profile, and EditProfile will render at individual routes declared with React Router, whereas the Menu component will render across all these views, and DeleteUser will be a part of the Profile view.
+
+
+### Frontend structure
+
+The following folder structure shows the new folders and files to be added to the skeleton to complete it with a React frontend:
+
+```
+| mern-skeleton/
+   | -- frontend/
+      | --- assets/
+         | ---- images/
+      | --- auth/
+         | ---- api-auth.js
+         | ---- auth-helper.js
+         | ---- PrivateRoute.js
+         | ---- Signin.js
+      | --- core/
+         | ---- Home.js
+         | ---- Menu.js
+      | --- user/
+         | ---- api-user.js
+         | ---- DeleteUser.js
+         | ---- EditProfile.js
+         | ---- Profile.js
+         | ---- Signup.js
+         | ---- Users.js
+      | --- App.js
+      | --- main.js
+      | --- MainRouter.js
+  | -- server/
+      | --- devBundle.js
+  | -- webpack.config.frontend.js
+  | -- webpack.config.frontend.production.js
+```
+
+The client folder will contain the React components, helpers, and frontend assets, such as images and CSS. Besides this folder and the Webpack config for compiling and bundling the client code, we will also modify some of the other existing files to integrate the complete skeleton.
+
+
+### Setting up development with React, React Router and Material-UI
+
+Before we can start developing with React in our existing skeleton code base, we first need to add configuration to compile and bundle the frontend code, add the React-related dependencies necessary to build the interactive interface, and tie it all together in the MERN development flow.
+
+#### Configuring Babel and Webpack
+
+To compile and bundle the client code to run it during development and also bundle it for production, we will update the configuration for Babel and Webpack.
+
+**Babel**
+
+For compiling React, first install the Babel React preset module as a development dependency:
+
+`npm install babel-preset-react --save-dev`
+
+Then, update .babelrc to include the module and also configure the react-hot-loader Babel plugin as required for the react-hot-loader module.
+
+**Webpack**
+
+
+
+
+### Backend user API integration
+
+
+
+### Auth integration
+
+
+
+### The Views
+
+
+
+### Navigation menu
+
+
+
+### Basic server-side rendering
