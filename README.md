@@ -254,7 +254,7 @@ const config = {
     target: "node",
     output: {
         path: path.join(CURRENT_WORKING_DIR , '/dist/'),
-        filename: "server.generated.js",
+        filename: "backend.generated.js",
         publicPath: '/dist/',
         libraryTarget: "commonjs2"
     },
@@ -279,7 +279,7 @@ module.exports = config
 
 * Require nodeExternals
 * The mode option is not set here explicitly but will be passed as required when running the Webpack commands with respect to running for development or building for production.
-* Webpack starts bundling from the server folder with server.js, then outputs the bundled code in server.generated.js in the dist folder.
+* Webpack starts bundling from the server folder with server.js, then outputs the bundled code in backend.generated.js in the dist folder.
 
 To install the webpack modules:
 
@@ -297,7 +297,7 @@ Create a `nodemon.json` file in your project folder, and add the following confi
   "watch": [
     "./backend"
   ],
-  "exec": "webpack --mode=development --config webpack.config.backend.js && node ./dist/server.generated.js"
+  "exec": "webpack --mode=development --config webpack.config.backend.js && node ./dist/backend.generated.js"
 }
 ```
 
@@ -335,7 +335,7 @@ Allowed scripts to execute the project from terminal:
 ##### `build`
 > `webpack --config webpack.config.frontend.production.js && webpack --mode=production --config webpack.config.backend.js`
 #### `start`
-> `NODE_ENV=production node ./dist/server.generated.js`
+> `NODE_ENV=production node ./dist/backend.generated.js`
 
 
 ### Preparing the server

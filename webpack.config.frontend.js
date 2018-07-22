@@ -25,6 +25,10 @@ module.exports = {
         use: [
           'babel-loader'
         ]
+      },
+      {
+        test: /\.(ttf|eot|svg|gif|jpg|png)(\?[\s\S]+)?$/,
+        use: 'file-loader'
       }
     ]
   }, plugins: [
