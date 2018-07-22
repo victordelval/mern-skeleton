@@ -44,6 +44,7 @@
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",
     "helmet": "^3.12.2",
+    "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.10",
     "mongoose": "^5.2.4"
   }
