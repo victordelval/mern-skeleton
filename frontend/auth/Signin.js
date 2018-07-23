@@ -83,7 +83,7 @@ class Signin extends Component {
     return (
       <Card className={classes.card}>
         <CardContent>
-          <Typography type="headline" component="h2" className={classes.title}>
+          <Typography style={{color: '#2196f3'}} type="headline" component="h2" className={classes.title}>
             Sign In
           </Typography>
           <TextField id="email" type="email" label="Email" className={classes.textField} value={this.state.email} onChange={this.handleChange('email')} margin="normal"/><br/>
@@ -96,7 +96,8 @@ class Signin extends Component {
           }
         </CardContent>
         <CardActions>
-          <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
+          <Button style={{backgroundColor: '#f3e721'}} variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
+          {/* <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button> */}
         </CardActions>
       </Card>
     )

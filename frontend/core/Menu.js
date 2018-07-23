@@ -10,21 +10,23 @@ import {Link, withRouter} from 'react-router-dom'
 
 const isActive = (history, path) => {
   if (history.location.pathname == path)
-    return {color: '#ff4081'}
+    return {color: '#f3e721'}
   else
     return {color: '#ffffff'}
 }
 const Menu = withRouter(({history}) => (
   <AppBar position="static">
     <Toolbar>
-      <Typography type="title" color="inherit">
-        MERN Skeleton
-      </Typography>
-      <Link to="/">
+      <Link to="/" style={{flex: 'auto'}}>
+        <Typography type="title" color="inherit" style={isActive(history, "/")}>
+          MERN App
+        </Typography>
+      </Link>
+      {/* <Link to="/">
         <IconButton aria-label="Home" style={isActive(history, "/")}>
           <HomeIcon/>
         </IconButton>
-      </Link>
+      </Link> */}
       <Link to="/users">
         <Button style={isActive(history, "/users")}>Users</Button>
       </Link>

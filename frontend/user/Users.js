@@ -45,7 +45,7 @@ class Users extends Component {
     const {classes} = this.props
     return (
       <Paper className={classes.root} elevation={4}>
-        <Typography type="title" className={classes.title}>
+        <Typography style={{color: '#2196f3'}} type="title" className={classes.title}>
           All Users
         </Typography>
         <List dense>

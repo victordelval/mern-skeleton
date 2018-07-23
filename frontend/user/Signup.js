@@ -77,7 +77,7 @@ class Signup extends Component {
     return (<div>
       <Card className={classes.card}>
         <CardContent>
-          <Typography type="headline" component="h2" className={classes.title}>
+          <Typography style={{color: '#2196f3'}} type="headline" component="h2" className={classes.title}>
             Sign Up
           </Typography>
           <TextField id="name" label="Name" className={classes.textField} value={this.state.name} onChange={this.handleChange('name')} margin="normal"/><br/>
@@ -90,7 +90,7 @@ class Signup extends Component {
           }
         </CardContent>
         <CardActions>
-          <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
+          <Button style={{backgroundColor: '#f3e721'}} variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
         </CardActions>
       </Card>
       <Dialog open={this.state.open} disableBackdropClick={true}>
