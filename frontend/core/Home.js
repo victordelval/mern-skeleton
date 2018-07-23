@@ -29,12 +29,12 @@ class Home extends Component {
       <Card className={classes.card}>
         <Typography type="headline" component="h2" className={classes.title}>
           Home Page
-          </Typography>
+        </Typography>
         <CardMedia className={classes.media} image={mountainsImg} title="Unicorn Shells" />
         <CardContent>
           <Typography type="body1" component="p">
             Welcome to the Mountains...
-            </Typography>
+          </Typography>
         </CardContent>
       </Card>
     )

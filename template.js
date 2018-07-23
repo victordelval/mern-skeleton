@@ -6,6 +6,11 @@ export default () => {
         <title>MERN App</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <style>
+          a {
+            text-decoration: none
+          }
+        </style>
       </head>
       <body>
         <div id="root"></div>
