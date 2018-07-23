@@ -1,5 +1,9 @@
-import React, {Component} from 'react'
-// import Card, {CardActions, CardContent} from '@material-ui/core/Card'
+import React, { Component } from 'react'
+
+import auth from './../auth/auth-helper'
+import { Redirect } from 'react-router-dom'
+import { signin } from './api-auth.js'
+
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -8,10 +12,7 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import PropTypes from 'prop-types'
-import {withStyles} from '@material-ui/core/styles'
-import auth from './../auth/auth-helper'
-import {Redirect} from 'react-router-dom'
-import {signin} from './api-auth.js'
+import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   card: {
@@ -41,10 +42,10 @@ const styles = theme => ({
 
 class Signin extends Component {
   state = {
-      email: '',
-      password: '',
-      error: '',
-      redirectToReferrer: false
+    email: '',
+    password: '',
+    error: '',
+    redirectToReferrer: false
   }
 
   clickSubmit = () => {
@@ -55,40 +56,40 @@ class Signin extends Component {
 
     signin(user).then((data) => {
       if (data.error) {
-        this.setState({error: data.error})
+        this.setState({ error: data.error })
       } else {
         auth.authenticate(data, () => {
-          this.setState({redirectToReferrer: true})
+          this.setState({ redirectToReferrer: true })
         })
       }
     })
   }
 
   handleChange = name => event => {
-    this.setState({[name]: event.target.value})
+    this.setState({ [name]: event.target.value })
   }
 
   render() {
-    const {classes} = this.props
-    const {from} = this.props.location.state || {
+    const { classes } = this.props
+    const { from } = this.props.location.state || {
       from: {
         pathname: '/'
       }
     }
-    const {redirectToReferrer} = this.state
+    const { redirectToReferrer } = this.state
     if (redirectToReferrer) {
-      return (<Redirect to={from}/>)
+      return (<Redirect to={from} />)
     }
 
     return (
       <Card className={classes.card}>
         <CardContent>
-          <Typography style={{color: '#2196f3'}} type="headline" component="h2" className={classes.title}>
+          <Typography style={{ color: '#2196f3' }} type="headline" component="h2" className={classes.title}>
             Sign In
           </Typography>
-          <TextField id="email" type="email" label="Email" className={classes.textField} value={this.state.email} onChange={this.handleChange('email')} margin="normal"/><br/>
-          <TextField id="password" type="password" label="Password" className={classes.textField} value={this.state.password} onChange={this.handleChange('password')} margin="normal"/>
-          <br/> {
+          <TextField id="email" type="email" label="Email" className={classes.textField} value={this.state.email} onChange={this.handleChange('email')} margin="normal" /><br />
+          <TextField id="password" type="password" label="Password" className={classes.textField} value={this.state.password} onChange={this.handleChange('password')} margin="normal" />
+          <br /> {
             this.state.error && (<Typography component="p" color="error">
               <Icon color="error" className={classes.error}>error</Icon>
               {this.state.error}
@@ -96,7 +97,7 @@ class Signin extends Component {
           }
         </CardContent>
         <CardActions>
-          <Button style={{backgroundColor: '#f3e721'}} variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
+          <Button style={{ backgroundColor: '#f3e721' }} variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button>
           {/* <Button color="primary" variant="raised" onClick={this.clickSubmit} className={classes.submit}>Submit</Button> */}
         </CardActions>
       </Card>

@@ -1,23 +1,26 @@
 import React from 'react'
+
+import auth from './../auth/auth-helper'
+import { Link, withRouter } from 'react-router-dom'
+
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import HomeIcon from '@material-ui/icons/Home'
+// import IconButton from '@material-ui/core/IconButton'
+// import HomeIcon from '@material-ui/icons/Home'
 import Button from '@material-ui/core/Button'
-import auth from './../auth/auth-helper'
-import {Link, withRouter} from 'react-router-dom'
 
 const isActive = (history, path) => {
   if (history.location.pathname == path)
-    return {color: '#f3e721'}
+    return { color: '#f3e721' }
   else
-    return {color: '#ffffff'}
+    return { color: '#ffffff' }
 }
-const Menu = withRouter(({history}) => (
+
+const Menu = withRouter(({ history }) => (
   <AppBar position="static">
     <Toolbar>
-      <Link to="/" style={{flex: 'auto'}}>
+      <Link to="/" style={{ flex: 'auto' }}>
         <Typography type="title" color="inherit" style={isActive(history, "/")}>
           MERN App
         </Typography>
@@ -48,8 +51,8 @@ const Menu = withRouter(({history}) => (
             <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
           </Link>
           <Button color="inherit" onClick={() => {
-              auth.signout(() => history.push('/'))
-            }}>Sign out</Button>
+            auth.signout(() => history.push('/'))
+          }}>Sign out</Button>
         </span>)
       }
     </Toolbar>
