@@ -21,7 +21,13 @@
   "homepage": "https://github.com/victordelval/mern-skeleton#readme",
   "main": "template.js",
   "scripts": {
-    "devel": "nodemon"
+    "devel": "nodemon",
+    "build": "webpack --config webpack.config.frontend.production.js && webpack --mode=production --config webpack.config.backend.js",
+    "start": "NODE_ENV=production node ./dist/backend.generated.js",
+    "test:front": "jest --verbose",
+    "test:front:watch": "jest --watch",
+    "test:front:coverage": "jest --coverage",
+    "test:front:reset": "npm test:front -- -u"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
