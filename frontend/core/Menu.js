@@ -22,7 +22,7 @@ const Menu = withRouter(({ history }) => (
     <Toolbar>
       <Link to="/" style={{ flex: 'auto' }}>
         <Typography type="title" color="inherit" style={isActive(history, "/")}>
-          MERN App
+          <h2>MERN App</h2>
         </Typography>
       </Link>
       {/* <Link to="/">
